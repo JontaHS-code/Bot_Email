@@ -16,7 +16,7 @@ REMETENTE = os.getenv('REMETENTE')
 SENHA = os.getenv('SENHA')
 
 app = Flask(__name__)
-app.secret_key = 'secret-key'
+app.secret_key = os.getenv('SECRET_KEY')
 
 # Função para enviar email
 def enviar_email(destinatario, assunto, mensagem, cc=None, anexos=[]):
