@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Envio de E-mails</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Envio de E-mails Automático</h1>
+
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %}
+      <ul class="flashes">
+        {% for category, message in messages %}
+        <li class="{{ category }}">{{ message }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %} {% endwith %}
+
+      <form action="/" method="POST" enctype="multipart/form-data">
+        <label for="assunto">Assunto:</label>
+        <input type="text" id="assunto" name="assunto" required />
+
+        <label for="mensagem">Mensagem:</label>
+        <textarea id="mensagem" name="mensagem" required></textarea>
+
+        <label for="arquivo"
+          >Arquivo com lista de e-mails (CSV ou Excel):</label
+        >
+        <input
+          type="file"
+          id="arquivo"
+          name="arquivo"
+          accept=".csv, .xlsx"
+          required
+        />
+
+        <button type="submit">Enviar E-mails</button>
+      </form>
+    </div>
+  </body>
+</html>
